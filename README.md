@@ -1,7 +1,7 @@
 # ⚡ SkyPulse - Previsão do Tempo em Tempo Real
 
 <p align="center">
-  <img src="assets/images/banner.png" alt="SkyPulse Banner" width="100%" style="border-radius: 12px; box-shadow: 0 8px 32px rgba(147, 51, 255, 0.3);">
+  <img src="https://i.pinimg.com/originals/b2/87/6f/b2876f8a04eed3c9419856e403b014c0.gif" alt="SkyPulse Weather Banner" width="250">
 </p>
 
 <p align="center">
