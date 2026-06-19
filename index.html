@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SkyPulse - Acompanhe a previsão do tempo de qualquer cidade em tempo real com um design moderno e elegante.">
+  <title>SkyPulse | Previsão do Tempo</title>
+  
+  <!-- Estilos -->
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- Background Blur Orbs for Premium Glow Effect -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <div class="app-wrapper container">
+    <!-- Header -->
+    <header class="main-header">
+      <div class="logo">
+        <i data-lucide="cloud-lightning" class="logo-icon"></i>
+        <h1>Sky<span>Pulse</span></h1>
+      </div>
+      <p class="tagline">Clima em tempo real com precisão e elegância</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+      <!-- Search Section -->
+      <section class="search-section" aria-label="Busca de Cidades">
+        <form id="search-form" class="search-form glass-panel">
+          <label for="city-input" class="sr-only">Digite o nome da cidade</label>
+          <div class="input-wrapper">
+            <i data-lucide="search" class="search-input-icon"></i>
+            <input 
+              type="text" 
+              id="city-input" 
+              placeholder="Digite o nome de uma cidade... (Ex: São Paulo)" 
+              required 
+              autocomplete="off"
+            >
+          </div>
+          <button type="submit" class="btn-search" aria-label="Buscar clima">
+            <span>Buscar</span>
+            <i data-lucide="arrow-right"></i>
+          </button>
+        </form>
+      </section>
+
+      <!-- Weather Display Section -->
+      <section class="weather-section" aria-live="polite">
+        
+        <!-- WELCOME CARD -->
+        <div id="welcome-card" class="glass-panel info-card">
+          <div class="info-icon-wrapper welcome-icon">
+            <i data-lucide="compass"></i>
+          </div>
+          <h2>Descubra o Clima</h2>
+          <p>Digite o nome de uma cidade acima para obter a temperatura atual, umidade, vento e outras condições climáticas em tempo real.</p>
+        </div>
+
+        <!-- SKELETON LOADERS -->
+        <div id="skeleton-loader" class="glass-panel weather-card skeleton-active hidden">
+          <div class="card-header-skeleton">
+            <div class="skeleton title-skeleton"></div>
+            <div class="skeleton text-skeleton"></div>
+          </div>
+          <div class="card-body-skeleton">
+            <div class="skeleton circle-skeleton"></div>
+            <div class="skeleton-temp-wrapper">
+              <div class="skeleton temp-skeleton"></div>
+              <div class="skeleton desc-skeleton"></div>
+            </div>
+          </div>
+          <div class="card-grid-skeleton">
+            <div class="skeleton item-skeleton"></div>
+            <div class="skeleton item-skeleton"></div>
+            <div class="skeleton item-skeleton"></div>
+            <div class="skeleton item-skeleton"></div>
+          </div>
+        </div>
+
+        <!-- WEATHER DISPLAY CARD -->
+        <div id="weather-card" class="glass-panel weather-card hidden">
+          <!-- Dynamic Glow Overlay determined by Weather Code -->
+          <div id="weather-glow" class="weather-card-glow"></div>
+          
+          <header class="card-header">
+            <div class="city-info">
+              <h2 id="w-city">--</h2>
+              <span id="w-country" class="country-badge">--</span>
+            </div>
+            <div class="time-info">
+              <i data-lucide="calendar"></i>
+              <time id="w-datetime">--</time>
+            </div>
+          </header>
+
+          <main class="card-body">
+            <div class="main-weather-info">
+              <div class="weather-icon-container" id="w-icon-container">
+                <!-- Icon will be rendered here dynamically -->
+                <i data-lucide="sun" class="weather-main-icon"></i>
+              </div>
+              <div class="temp-container">
+                <span id="w-temp" class="temperature">--</span>
+                <span id="w-desc" class="condition-desc">--</span>
+              </div>
+            </div>
+          </main>
+
+          <footer class="card-footer">
+            <div class="details-grid">
+              
+              <!-- Apparent Temperature -->
+              <div class="detail-item glass-panel">
+                <div class="detail-icon term-icon">
+                  <i data-lucide="thermometer"></i>
+                </div>
+                <div class="detail-info">
+                  <span class="detail-label">Sensação</span>
+                  <span class="detail-value" id="w-apparent">--</span>
+                </div>
+              </div>
+
+              <!-- Humidity -->
+              <div class="detail-item glass-panel">
+                <div class="detail-icon humidity-icon">
+                  <i data-lucide="droplets"></i>
+                </div>
+                <div class="detail-info">
+                  <span class="detail-label">Umidade</span>
+                  <span class="detail-value" id="w-humidity">--</span>
+                </div>
+              </div>
+
+              <!-- Wind Speed -->
+              <div class="detail-item glass-panel">
+                <div class="detail-icon wind-icon">
+                  <i data-lucide="wind"></i>
+                </div>
+                <div class="detail-info">
+                  <span class="detail-label">Vento</span>
+                  <span class="detail-value" id="w-wind">--</span>
+                </div>
+              </div>
+
+              <!-- Coordinates -->
+              <div class="detail-item glass-panel">
+                <div class="detail-icon geo-icon">
+                  <i data-lucide="map-pin"></i>
+                </div>
+                <div class="detail-info">
+                  <span class="detail-label">Coordenadas</span>
+                  <span class="detail-value" id="w-coords">--</span>
+                </div>
+              </div>
+
+            </div>
+          </footer>
+        </div>
+
+        <!-- ERROR CARD -->
+        <div id="error-card" class="glass-panel info-card error-card hidden">
+          <div class="info-icon-wrapper error-icon">
+            <i data-lucide="alert-circle"></i>
+          </div>
+          <h2>Ops! Algo deu errado</h2>
+          <p id="error-message">Não conseguimos carregar os dados. Tente novamente.</p>
+          <button id="btn-try-again" class="btn-secondary">Tentar Novamente</button>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <p>&copy; 2026 SkyPulse. Desenvolvido com <span class="heart">&hearts;</span> por Antigravity.</p>
+      <p class="credits">Dados fornecidos gratuitamente por <a href="https://open-meteo.com" target="_blank" rel="noopener noreferrer">Open-Meteo API</a>.</p>
+    </footer>
+  </div>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Application JS -->
+  <script type="module" src="src/js/main.js" defer></script>
+</body>
+</html>

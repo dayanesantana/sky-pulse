@@ -1,0 +1,12 @@
+{
+  "name": "skypulse-weather",
+  "version": "1.0.0",
+  "description": "Weather application using HTML5, CSS3, and JavaScript Vanilla",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
